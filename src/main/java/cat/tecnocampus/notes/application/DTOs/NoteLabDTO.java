@@ -1,11 +1,16 @@
 package cat.tecnocampus.notes.application.DTOs;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
 
 public class NoteLabDTO {
 
+    @Size(min=3,message = "title must be at least 3 letters long")
+    @Size(max=255,message = "title must not be longer than 255 letters long")
+    @Pattern(regexp = "^[a-zA-Z\\s]+$")
     private String title;
     private String content;
 
@@ -18,12 +23,12 @@ public class NoteLabDTO {
     public NoteLabDTO() {
     }
 
-    /*
+
     public UserLabDTO getOwner() {
         return owner;
     }
 
-     */
+
 
     public void setOwner(UserLabDTO owner) {
         this.owner = owner;
